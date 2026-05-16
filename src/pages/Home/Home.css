@@ -1,0 +1,187 @@
+﻿.landing-page {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section {
+  width: 100%;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- PORTAL VORTEX RE-RESTORED (400px Desktop) --- */
+.portal-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portal-vortex {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #b2df28 0%, #4a911d 50%, transparent 75%);
+  border-radius: 50%;
+  filter: blur(10px);
+  animation: swirl 4s linear infinite;
+  box-shadow: 0 0 60px var(--portal-glow);
+}
+
+.portal-ring {
+  position: absolute;
+  border: 2px dashed var(--portal-green);
+  border-radius: 50%;
+  animation: rotate 10s linear infinite;
+  opacity: 0.5;
+}
+
+.ring-1 { width: 350px; height: 350px; animation-duration: 15s; }
+.ring-2 { width: 380px; height: 380px; animation-duration: 20s; animation-direction: reverse; }
+
+@keyframes swirl {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.1) rotate(180deg); opacity: 1; }
+  100% { transform: scale(1) rotate(360deg); opacity: 0.8; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-section h1 {
+  font-size: 4.5rem;
+  margin: 0;
+  background: linear-gradient(to bottom, #fff 30%, var(--portal-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px var(--portal-glow));
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  color: #ccc;
+  max-width: 700px;
+  margin: 20px auto;
+  line-height: 1.6;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* --- PORTAL CARDS RE-RESTORED (Holographic + Scan) --- */
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 60px 20px;
+}
+
+.portal-card {
+  background: rgba(13, 13, 13, 0.6);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(178, 223, 40, 0.2);
+  padding: 40px 30px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+}
+
+.portal-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(178, 223, 40, 0.2);
+  border-color: var(--portal-green);
+}
+
+.portal-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--portal-green);
+  opacity: 0;
+  box-shadow: 0 0 10px var(--portal-green);
+}
+
+.portal-card:hover::after {
+  animation: scan 2s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+.portal-card i {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 25px;
+  transition: transform 0.3s;
+  filter: drop-shadow(0 0 10px var(--portal-glow));
+}
+
+.portal-card:hover i { transform: scale(1.2); }
+
+.portal-card h3 {
+  color: #fff;
+  margin: 0 0 15px 0;
+  font-size: 1.3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.portal-card p {
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Colores por categoría */
+.card-all { border-color: var(--portal-green); }
+.card-human { border-color: var(--accent-blue); }
+.card-alien { border-color: var(--accent-purple); }
+.card-robot { border-color: #f1c40f; }
+
+.stats-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.stat-item {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-left: 4px solid var(--portal-green);
+  color: white;
+}
+
+/* MOBILE FIXES WITHOUT BREAKING DESKTOP */
+@media (max-width: 900px) {
+  .hero-section h1 { font-size: 2.8rem; }
+  .portal-container { width: 300px; height: 300px; }
+  .portal-vortex { width: 220px; height: 220px; }
+  .ring-1 { width: 260px; height: 260px; }
+  .ring-2 { width: 290px; height: 290px; }
+  .stats-container { flex-direction: column; gap: 10px; }
+}
