@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { getCharactersBySpecies } from '../../services/characterService';
-import CharacterCard from '../../components/CharacterCard/CharacterCard';
-import Pagination from '../../components/Pagination/Pagination';
-import './Species.css';
+﻿import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getCharactersBySpecies } from "../../services/characterService";
+import CharacterCard from "../../components/CharacterCard/CharacterCard";
+import Pagination from "../../components/Pagination/Pagination";
+import "./Species.css";
 
 const Species = () => {
   const { type } = useParams();
@@ -15,19 +15,23 @@ const Species = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   const speciesOptions = [
-    { label: 'Humano', value: 'Human' },
-    { label: 'Alien', value: 'Alien' },
-    { label: 'Robot', value: 'Robot' },
-    { label: 'Humanoide', value: 'Humanoid' },
-    { label: 'Criatura Mitol�gica', value: 'Mythological Creature' },
-    { label: 'Cronenberg', value: 'Cronenberg' },
-    { label: 'Poopybutthole', value: 'Poopybutthole' },
-    { label: 'Animal', value: 'Animal' },
-    { label: 'Desconocido', value: 'unknown' }
+    { label: "Humano", value: "Human" },
+    { label: "Alien", value: "Alien" },
+    { label: "Robot", value: "Robot" },
+    { label: "Humanoide", value: "Humanoid" },
+    { label: "Criatura Mitológica", value: "Mythological Creature" },
+    { label: "Cronenberg", value: "Cronenberg" },
+    { label: "Poopybutthole", value: "Poopybutthole" },
+    { label: "Animal", value: "Animal" },
+    { label: "Desconocido", value: "unknown" }
   ];
 
+  const getSpeciesLabel = (val) => {
+    const option = speciesOptions.find(o => o.value === val);
+    return option ? option.label.toUpperCase() : val.toUpperCase();
+  };
+
   useEffect(() => {
-    // Reset page when species type changes
     setCurrentPage(1);
   }, [type]);
 
@@ -48,7 +52,7 @@ const Species = () => {
       }
     };
     fetchSpecies();
-    window.scrollTo(0, 0); // Scroll to top when page changes
+    window.scrollTo(0, 0);
   }, [type, currentPage]);
 
   const handleSpeciesChange = (event) => {
@@ -70,7 +74,7 @@ const Species = () => {
         borderBottom: "1px solid rgba(178, 223, 40, 0.2)",
         paddingBottom: "20px"
       }}>
-        <h1 style={{ margin: 0, fontSize: "2rem" }}>ESPECIE: {type}</h1>
+        <h1 style={{ margin: 0, fontSize: "2rem" }}>ESPECIE: {getSpeciesLabel(type)}</h1>
 
         <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
           <span style={{ color: "#888", fontFamily: "Orbitron", fontSize: "0.8rem" }}>FILTRAR:</span>
@@ -105,7 +109,7 @@ const Species = () => {
         </div>
       ) : error ? (
         <div className="status-message error-message">
-          <p>?? {error}</p>
+          <p>⚠️ {error}</p>
         </div>
       ) : (
         <>
