@@ -1,7 +1,8 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCharactersBySpecies } from '../../services/characterService';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
+import Pagination from '../../components/Pagination/Pagination';
 import './Species.css';
 
 const Species = () => {
@@ -10,13 +11,15 @@ const Species = () => {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const speciesOptions = [
     { label: 'Humano', value: 'Human' },
     { label: 'Alien', value: 'Alien' },
     { label: 'Robot', value: 'Robot' },
     { label: 'Humanoide', value: 'Humanoid' },
-    { label: 'Criatura Mitológica', value: 'Mythological Creature' },
+    { label: 'Criatura Mitol�gica', value: 'Mythological Creature' },
     { label: 'Cronenberg', value: 'Cronenberg' },
     { label: 'Poopybutthole', value: 'Poopybutthole' },
     { label: 'Animal', value: 'Animal' },
@@ -24,31 +27,43 @@ const Species = () => {
   ];
 
   useEffect(() => {
+    // Reset page when species type changes
+    setCurrentPage(1);
+  }, [type]);
+
+  useEffect(() => {
     const fetchSpecies = async () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await getCharactersBySpecies(type);
+        const data = await getCharactersBySpecies(type, currentPage);
         setCharacters(data.results);
+        setTotalPages(data.info.pages);
       } catch (err) {
         setError("No se encontraron resultados para esta especie.");
         setCharacters([]);
+        setTotalPages(1);
       } finally {
         setLoading(false);
       }
     };
     fetchSpecies();
-  }, [type]);
+    window.scrollTo(0, 0); // Scroll to top when page changes
+  }, [type, currentPage]);
 
   const handleSpeciesChange = (event) => {
     navigate("/species/" + event.target.value);
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="home-container">
-      <div style={{ 
-        display: "flex", 
-        justifyContent: "space-between", 
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
         alignItems: "center",
         flexWrap: "wrap",
         marginBottom: "40px",
@@ -56,16 +71,16 @@ const Species = () => {
         paddingBottom: "20px"
       }}>
         <h1 style={{ margin: 0, fontSize: "2rem" }}>ESPECIE: {type}</h1>
-        
+
         <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
           <span style={{ color: "#888", fontFamily: "Orbitron", fontSize: "0.8rem" }}>FILTRAR:</span>
-          <select 
-            value={type} 
+          <select
+            value={type}
             onChange={handleSpeciesChange}
-            style={{ 
-              padding: "10px 20px", 
-              borderRadius: "50px", 
-              background: "rgba(255,255,255,0.05)", 
+            style={{
+              padding: "10px 20px",
+              borderRadius: "50px",
+              background: "rgba(255,255,255,0.05)",
               color: "white",
               border: "1px solid var(--portal-green)",
               outline: "none",
@@ -90,14 +105,22 @@ const Species = () => {
         </div>
       ) : error ? (
         <div className="status-message error-message">
-          <p>⚠️ {error}</p>
+          <p>?? {error}</p>
         </div>
       ) : (
-        <div className="character-grid">
-          {characters.map(char => (
-            <CharacterCard key={char.id} character={char} />
-          ))}
-        </div>
+        <>
+          <div className="character-grid">
+            {characters.map(char => (
+              <CharacterCard key={char.id} character={char} />
+            ))}
+          </div>
+          
+          <Pagination 
+            currentPage={currentPage} 
+            totalPages={totalPages} 
+            onPageChange={handlePageChange} 
+          />
+        </>
       )}
     </div>
   );
