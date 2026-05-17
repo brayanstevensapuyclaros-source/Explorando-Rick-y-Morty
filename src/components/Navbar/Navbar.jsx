@@ -24,28 +24,30 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
+        {/* MARCA */}
         <div className="navbar-left">
           <NavLink to="/" className="navbar-brand" onClick={closeMenu}>
-            EXPLORADOR RICK Y MORTY
+            EXPLORADOR DE RICK Y MORTY
           </NavLink>
         </div>
 
-        {/* ÚNICO BUSCADOR CON ESTILO Y LUPA */}
+        {/* ÚNICA BARRA DE BÚSQUEDA */}
         <form className="navbar-search" onSubmit={handleSearch}>
-          <input 
-            type="text" 
-            placeholder="Buscar espécimen..." 
+          <input
+            type="text"
+            placeholder="Buscar espécimen..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button type="submit">🔍</button>
+          <button type="submit" aria-label="Buscar">🔍</button>
         </form>
 
+        {/* LADO DERECHO: LINKS + HAMBURGUESA */}
         <div className="navbar-right">
           <div className={`navbar-links ${isOpen ? 'active' : ''}`}>
             <NavLink to="/" className="nav-link" onClick={closeMenu}>Portal</NavLink>
             <NavLink to="/all" className="nav-link" onClick={closeMenu}>Registro</NavLink>
-            
+
             <div className="nav-dropdown">
               <span className="nav-link dropdown-trigger">Especies ▾</span>
               <div className="dropdown-content">
@@ -58,7 +60,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          <button className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
+          <button
+            className={`hamburger ${isOpen ? 'active' : ''}`}
+            onClick={toggleMenu}
+            aria-label="Menú"
+          >
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
