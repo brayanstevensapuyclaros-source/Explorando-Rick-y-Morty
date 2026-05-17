@@ -19,7 +19,7 @@ const Species = () => {
     { label: 'Alien', value: 'Alien' },
     { label: 'Robot', value: 'Robot' },
     { label: 'Humanoide', value: 'Humanoid' },
-    { label: 'Criatura Mitológica', value: 'Mythological Creature' },
+    { label: 'Criatura Mitolï¿½gica', value: 'Mythological Creature' },
     { label: 'Cronenberg', value: 'Cronenberg' },
     { label: 'Poopybutthole', value: 'Poopybutthole' },
     { label: 'Animal', value: 'Animal' },
