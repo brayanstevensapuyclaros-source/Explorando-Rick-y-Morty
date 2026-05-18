@@ -2,6 +2,7 @@
   padding: clamp(20px, 5vw, 40px) 5%;
   max-width: 1400px;
   margin: 0 auto;
+  margin-top: 80px;
 }
 
 .home-container h1 {

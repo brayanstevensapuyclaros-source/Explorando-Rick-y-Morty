@@ -1,6 +1,7 @@
 .search-container {
   max-width: 1400px;
   margin: 0 auto;
+  margin-top: 80px;
   padding: 40px 20px;
   min-height: 60vh;
 }
