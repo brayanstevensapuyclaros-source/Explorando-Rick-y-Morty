@@ -1,0 +1,322 @@
+.landing-page {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section {
+  width: 100%;
+  padding: clamp(40px, 8vw, 80px) 20px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================== */
+/* PORTAL DIMENSIONAL R&M (SVG)   */
+/* ============================== */
+.portal-container {
+  position: relative;
+  width: clamp(220px, 45vw, 400px);
+  height: clamp(220px, 45vw, 400px);
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Halo exterior que late */
+.portal-halo {
+  position: absolute;
+  inset: -15%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(178, 223, 40, 0.55) 0%,
+    rgba(178, 223, 40, 0.22) 35%,
+    transparent 65%
+  );
+  filter: blur(30px);
+  animation: haloPulse 3s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* SVG del portal (corazón del efecto) */
+.portal-svg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  filter: drop-shadow(0 0 30px rgba(178, 223, 40, 0.75))
+          drop-shadow(0 0 60px rgba(178, 223, 40, 0.4));
+  animation: portalBreathe 4s ease-in-out infinite;
+}
+
+/* Capa de remolinos encima del SVG */
+.portal-swirl-overlay {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.18) 20deg,
+    transparent 60deg,
+    rgba(212, 255, 58, 0.3) 120deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.22) 240deg,
+    transparent 300deg,
+    rgba(212, 255, 58, 0.25) 350deg,
+    transparent 360deg
+  );
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  animation: portalSwirl 6s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Anillos orbitales */
+.portal-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ring-1 {
+  width: 92%;
+  height: 92%;
+  border: 1px dashed rgba(178, 223, 40, 0.55);
+  animation: rotate 14s linear infinite;
+}
+
+.ring-2 {
+  width: 105%;
+  height: 105%;
+  border: 1px dotted rgba(212, 255, 58, 0.35);
+  animation: rotate 22s linear infinite reverse;
+}
+
+/* Partículas flotantes alrededor del portal */
+.portal-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #d4ff3a;
+  border-radius: 50%;
+  box-shadow:
+    0 0 8px #b2df28,
+    0 0 16px rgba(178, 223, 40, 0.7),
+    0 0 24px rgba(178, 223, 40, 0.4);
+}
+
+.particle.p1 { top: 8%;  left: 18%; animation: float1 6s ease-in-out infinite; }
+.particle.p2 { top: 28%; right: 4%; animation: float2 7s ease-in-out infinite; }
+.particle.p3 { bottom: 14%; right: 22%; animation: float3 8s ease-in-out infinite; }
+.particle.p4 { bottom: 22%; left: 8%;  animation: float4 5s ease-in-out infinite; }
+.particle.p5 { top: 50%; left: -3%;  animation: float5 9s ease-in-out infinite; }
+.particle.p6 { top: 62%; right: -2%; animation: float6 6.5s ease-in-out infinite; }
+
+/* Animaciones del portal */
+@keyframes haloPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.08); }
+}
+
+@keyframes portalBreathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.02); }
+}
+
+@keyframes portalSwirl {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0);     opacity: 0.4; }
+  50%      { transform: translate(22px, -30px); opacity: 1; }
+}
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0);      opacity: 0.6; }
+  50%      { transform: translate(-25px, 22px); opacity: 1; }
+}
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0);      opacity: 0.3; }
+  50%      { transform: translate(-18px, -22px); opacity: 0.9; }
+}
+@keyframes float4 {
+  0%, 100% { transform: translate(0, 0);     opacity: 0.5; }
+  50%      { transform: translate(26px, -18px); opacity: 1; }
+}
+@keyframes float5 {
+  0%, 100% { transform: translate(0, 0);     opacity: 0.4; }
+  50%      { transform: translate(30px, 28px); opacity: 0.8; }
+}
+@keyframes float6 {
+  0%, 100% { transform: translate(0, 0);      opacity: 0.5; }
+  50%      { transform: translate(-22px, -28px); opacity: 1; }
+}
+
+/* ============================== */
+/* HERO TEXT                      */
+/* ============================== */
+.hero-section h1 {
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  margin: 30px 0 0;
+  background: linear-gradient(to bottom, #fff 30%, var(--portal-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px var(--portal-glow));
+}
+
+.hero-section p {
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  color: #ccc;
+  max-width: 700px;
+  margin: 20px auto;
+  line-height: 1.6;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  padding: 0 10px;
+}
+
+/* ============================== */
+/* PORTAL CARDS                   */
+/* ============================== */
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: clamp(15px, 3vw, 25px);
+  width: 100%;
+  max-width: 1200px;
+  padding: clamp(30px, 6vw, 60px) 20px;
+}
+
+.portal-card {
+  background: rgba(13, 13, 13, 0.6);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(178, 223, 40, 0.2);
+  padding: clamp(25px, 5vw, 40px) clamp(20px, 4vw, 30px);
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+}
+
+.portal-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(178, 223, 40, 0.2);
+  border-color: var(--portal-green);
+}
+
+.portal-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--portal-green);
+  opacity: 0;
+  box-shadow: 0 0 10px var(--portal-green);
+}
+
+.portal-card:hover::after {
+  animation: scan 2s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes scan {
+  0%   { top: 0; }
+  100% { top: 100%; }
+}
+
+.portal-card i {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  display: block;
+  margin-bottom: clamp(15px, 3vw, 25px);
+  transition: transform 0.3s;
+  filter: drop-shadow(0 0 10px var(--portal-glow));
+  font-style: normal;
+}
+
+.portal-card:hover i { transform: scale(1.2); }
+
+.portal-card h3 {
+  color: #fff;
+  margin: 0 0 15px 0;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.portal-card p {
+  color: #aaa;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  line-height: 1.4;
+}
+
+.card-all   { border-color: var(--portal-green); }
+.card-human { border-color: var(--accent-blue); }
+.card-alien { border-color: var(--accent-purple); }
+.card-robot { border-color: #f1c40f; }
+
+/* ============================== */
+/* STATS                          */
+/* ============================== */
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+  padding: 0 10px;
+}
+
+.stat-item {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.5);
+  border-left: 4px solid var(--portal-green);
+  color: white;
+}
+
+/* ============================== */
+/* MÓVIL                          */
+/* ============================== */
+@media (max-width: 600px) {
+  .stats-container {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+}

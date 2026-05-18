@@ -1,0 +1,32 @@
+﻿.home-container {
+  padding: clamp(20px, 5vw, 40px) 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.home-container h1 {
+  text-align: center;
+  margin-bottom: clamp(30px, 5vw, 50px);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: white;
+  text-shadow: 0 0 20px rgba(0, 176, 200, 0.4);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 100%, 280px), 1fr));
+  gap: clamp(15px, 3vw, 30px);
+}
+
+.status-message {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--portal-green);
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  padding: 20px;
+}

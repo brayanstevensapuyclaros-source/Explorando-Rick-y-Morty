@@ -1,0 +1,52 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+  --portal-green: #b2df28;
+  --portal-glow: rgba(178, 223, 40, 0.4);
+  --dark-bg: #050505;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-main: #e0e0e0;
+  --accent-blue: #00b0c8;
+  --accent-purple: #9b59b6;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--dark-bg);
+  color: var(--text-main);
+  font-family: 'Roboto', sans-serif;
+  /* Imagen de fondo estilo Rickipedia (espacio estrellado) */
+  background-image: 
+    linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)),
+    url('https://images7.alphacoders.com/633/633424.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .navbar-brand {
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 900;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--portal-green), var(--accent-blue));
+  border-radius: 5px;
+}
