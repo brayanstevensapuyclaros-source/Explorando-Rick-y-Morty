@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { searchCharactersByName } from '../../services/characterService';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
 import CharacterModal from '../../components/CharacterModal/CharacterModal';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import './Search.css';
 
 const Search = () => {
@@ -18,7 +19,7 @@ const Search = () => {
         setLoading(true);
         setError(null);
         const data = await searchCharactersByName(query);
-        
+
         if (data && data.results && data.results.length > 0) {
           setCharacters(data.results);
         } else {
@@ -33,43 +34,41 @@ const Search = () => {
         setLoading(false);
       }
     };
-    
+
     fetchResults();
     window.scrollTo(0, 0);
   }, [query]);
 
   if (loading) return (
-    <div className="search-container">
-      <div className="status-message">
-        <div className="loading-spinner"></div>
+    <div className='search-container'>
+      <div className='status-message'>
+        <div className='loading-spinner'></div>
         <p>ESCANEANDO REGISTROS...</p>
       </div>
     </div>
   );
 
   return (
-    <div className="search-container">
+    <div className='search-container'>
       <h1 style={{ marginBottom: '10px' }}>RESULTADOS DE BÚSQUEDA</h1>
       <p style={{ color: '#b2df28', marginBottom: '30px', fontSize: '0.9rem' }}>
         Personajes que inician con: "<span style={{ fontWeight: 'bold' }}>{query}</span>"
       </p>
 
       {error ? (
-        <div className="status-message error-message">
-          <p>⚠️ {error}</p>
-        </div>
+        <ErrorMessage message={error} />
       ) : (
-        <div className="character-grid">
+        <div className='character-grid'>
           {characters.map(char => (
-            <CharacterCard 
-              key={char.id} 
+            <CharacterCard
+              key={char.id}
               character={char}
               onClick={() => setSelectedCharacter(char)}
             />
           ))}
         </div>
       )}
-      <CharacterModal 
+      <CharacterModal
         character={selectedCharacter}
         isOpen={selectedCharacter !== null}
         onClose={() => setSelectedCharacter(null)}

@@ -1,16 +1,57 @@
-# React + Vite
+﻿# Explorando Rick y Morty
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación web interactiva desarrollada con **React** y **Vite** que permite explorar el universo de Rick y Morty utilizando su API oficial.
 
-Currently, two official plugins are available:
+## 🚀 Requisitos Previos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Antes de comenzar, asegúrate de tener instalado:
+- [Node.js](https://nodejs.org/) (versión 18 o superior recomendada)
+- [npm](https://www.npmjs.com/) (viene incluido con Node.js)
 
-## React Compiler
+## 🛠️ Instalación y Configuración
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Sigue estos pasos para configurar el proyecto localmente:
 
-## Expanding the ESLint configuration
+1.  **Clonar el repositorio:**
+    `ash
+    git clone https://github.com/brayanstevensapuyclaros-source/Explorando-Rick-y-Morty.git
+    `
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2.  **Entrar en la carpeta del proyecto:**
+    `ash
+    cd Explorando-Rick-y-Morty
+    `
+
+3.  **Instalar las dependencias:**
+    `ash
+    npm install
+    `
+
+## 💻 Ejecución
+
+Para iniciar el servidor de desarrollo y ver la aplicación en tu navegador:
+
+`ash
+npm run dev
+`
+
+Una vez ejecutado, abre [http://localhost:5173](http://localhost:5173) en tu navegador.
+
+## 📦 Otros Comandos Disponibles
+
+- 
+pm run build: Genera una versión optimizada del proyecto para producción en la carpeta dist.
+- 
+pm run preview: Permite previsualizar localmente la versión de producción generada.
+- 
+pm run lint: Ejecuta ESLint para analizar el código en busca de errores o advertencias de estilo.
+
+## 🧰 Tecnologías Utilizadas
+
+- **React 19**: Biblioteca para construir la interfaz de usuario.
+- **Vite**: Herramienta de construcción rápida para frontend.
+- **React Router Dom**: Para la navegación entre páginas.
+- **Rick and Morty API**: Fuente de datos de los personajes y episodios.
+
+---
+

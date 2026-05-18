@@ -2,6 +2,7 @@
 import { getAllCharacters } from '../../services/characterService';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
 import CharacterModal from '../../components/CharacterModal/CharacterModal';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import './AllCharacters.css';
 
 const AllCharacters = () => {
@@ -31,12 +32,10 @@ const AllCharacters = () => {
       <p>CARGANDO REGISTROS GÁLACTICOS...</p>
     </div>
   );
-  
+
   if (error) return (
     <div className="home-container">
-      <div className="status-message error-message">
-        <p>⚠️ {error}</p>
-      </div>
+      <ErrorMessage message={error} />
     </div>
   );
 
@@ -45,14 +44,14 @@ const AllCharacters = () => {
       <h1>REGISTRO CIVIL DE PERSONAJES</h1>
       <div className="character-grid">
         {characters.map(char => (
-          <CharacterCard 
-            key={char.id} 
+          <CharacterCard
+            key={char.id}
             character={char}
             onClick={() => setSelectedCharacter(char)}
           />
         ))}
       </div>
-      <CharacterModal 
+      <CharacterModal
         character={selectedCharacter}
         isOpen={selectedCharacter !== null}
         onClose={() => setSelectedCharacter(null)}
