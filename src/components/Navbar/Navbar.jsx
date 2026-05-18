@@ -19,7 +19,17 @@ const Navbar = () => {
     }
   };
 
-  const speciesList = ['Human', 'Alien', 'Robot', 'Humanoid', 'Cronenberg'];
+  const speciesList = [
+    { label: 'Human', value: 'Human' },
+    { label: 'Alien', value: 'Alien' },
+    { label: 'Robot', value: 'Robot' },
+    { label: 'Humanoid', value: 'Humanoid' },
+    { label: 'Mythological Creature', value: 'Mythological Creature' },
+    { label: 'Cronenberg', value: 'Cronenberg' },
+    { label: 'Poopybutthole', value: 'Poopybutthole' },
+    { label: 'Animal', value: 'Animal' },
+    { label: 'unknown', value: 'unknown' }
+  ];
 
   return (
     <nav className="navbar">
@@ -52,8 +62,8 @@ const Navbar = () => {
               <span className="nav-link dropdown-trigger">Especies ▾</span>
               <div className="dropdown-content">
                 {speciesList.map(s => (
-                  <NavLink key={s} to={"/species/" + s} onClick={closeMenu}>
-                    {s}
+                  <NavLink key={s.value} to={"/species/" + s.value} onClick={closeMenu}>
+                    {s.label}
                   </NavLink>
                 ))}
               </div>
