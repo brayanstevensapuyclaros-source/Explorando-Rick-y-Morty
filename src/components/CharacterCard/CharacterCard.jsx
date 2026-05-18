@@ -1,7 +1,7 @@
 ﻿import React from "react";
 import "./CharacterCard.css";
 
-const CharacterCard = ({ character }) => {
+const CharacterCard = ({ character, onClick }) => {
   const { name, image, species, status, gender } = character;
 
   const statusES = {
@@ -81,7 +81,7 @@ const CharacterCard = ({ character }) => {
   };
 
   return (
-    <div className="character-card">
+    <div className="character-card" onClick={onClick}>
       <div className="img-container">
         <img src={image} alt={name} />
       </div>

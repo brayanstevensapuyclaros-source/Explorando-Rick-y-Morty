@@ -2,6 +2,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { getCharactersBySpecies } from "../../services/characterService";
 import CharacterCard from "../../components/CharacterCard/CharacterCard";
+import CharacterModal from "../../components/CharacterModal/CharacterModal";
 import Pagination from "../../components/Pagination/Pagination";
 import "./Species.css";
 
@@ -13,6 +14,7 @@ const Species = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   const speciesOptions = [
     { label: "Humano", value: "Human" },
@@ -115,7 +117,11 @@ const Species = () => {
         <>
           <div className="character-grid">
             {characters.map(char => (
-              <CharacterCard key={char.id} character={char} />
+              <CharacterCard 
+                key={char.id} 
+                character={char}
+                onClick={() => setSelectedCharacter(char)}
+              />
             ))}
           </div>
           
@@ -126,6 +132,11 @@ const Species = () => {
           />
         </>
       )}
+      <CharacterModal 
+        character={selectedCharacter}
+        isOpen={selectedCharacter !== null}
+        onClose={() => setSelectedCharacter(null)}
+      />
     </div>
   );
 };

@@ -9,6 +9,7 @@
   flex-direction: column;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 92%, 92% 100%, 0 100%);
+  cursor: pointer;
 }
 
 .character-card:hover {

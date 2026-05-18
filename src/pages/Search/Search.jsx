@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { searchCharactersByName } from '../../services/characterService';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
+import CharacterModal from '../../components/CharacterModal/CharacterModal';
 import './Search.css';
 
 const Search = () => {
@@ -9,6 +10,7 @@ const Search = () => {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -59,10 +61,19 @@ const Search = () => {
       ) : (
         <div className="character-grid">
           {characters.map(char => (
-            <CharacterCard key={char.id} character={char} />
+            <CharacterCard 
+              key={char.id} 
+              character={char}
+              onClick={() => setSelectedCharacter(char)}
+            />
           ))}
         </div>
       )}
+      <CharacterModal 
+        character={selectedCharacter}
+        isOpen={selectedCharacter !== null}
+        onClose={() => setSelectedCharacter(null)}
+      />
     </div>
   );
 };

@@ -1,12 +1,14 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { getAllCharacters } from '../../services/characterService';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
+import CharacterModal from '../../components/CharacterModal/CharacterModal';
 import './AllCharacters.css';
 
 const AllCharacters = () => {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -42,8 +44,19 @@ const AllCharacters = () => {
     <div className="home-container">
       <h1>REGISTRO CIVIL DE PERSONAJES</h1>
       <div className="character-grid">
-        {characters.map(char => <CharacterCard key={char.id} character={char} />)}
+        {characters.map(char => (
+          <CharacterCard 
+            key={char.id} 
+            character={char}
+            onClick={() => setSelectedCharacter(char)}
+          />
+        ))}
       </div>
+      <CharacterModal 
+        character={selectedCharacter}
+        isOpen={selectedCharacter !== null}
+        onClose={() => setSelectedCharacter(null)}
+      />
     </div>
   );
 };

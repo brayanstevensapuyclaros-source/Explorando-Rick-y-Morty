@@ -1,0 +1,238 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 998;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(13, 13, 13, 0.95);
+  backdrop-filter: blur(12px);
+  border: 2px solid var(--portal-green);
+  border-radius: 0;
+  z-index: 999;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 800px;
+  overflow-y: auto;
+  box-shadow: 0 0 50px var(--portal-glow), inset 0 0 30px rgba(178, 223, 40, 0.1);
+  animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(178, 223, 40, 0.1);
+  border: 1px solid var(--portal-green);
+  color: var(--portal-green);
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.modal-close:hover {
+  background: var(--portal-green);
+  color: #000;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 40px;
+  align-items: start;
+}
+
+.modal-image {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-image img {
+  width: 100%;
+  max-width: 350px;
+  border: 2px solid rgba(178, 223, 40, 0.3);
+  border-radius: 0;
+  box-shadow: 0 0 30px rgba(178, 223, 40, 0.2);
+  transition: all 0.3s ease;
+}
+
+.modal-image img:hover {
+  box-shadow: 0 0 50px var(--portal-glow);
+  border-color: var(--portal-green);
+}
+
+.modal-info h1 {
+  font-size: 2rem;
+  color: var(--portal-green);
+  margin: 0 0 15px 0;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 20px var(--portal-glow);
+}
+
+.modal-status {
+  margin-bottom: 30px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 0;
+  font-weight: bold;
+  font-size: 0.85rem;
+  font-family: "Orbitron", sans-serif;
+  border: 1px solid;
+}
+
+.status-Alive {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.status-Dead {
+  background: rgba(244, 67, 54, 0.2);
+  color: #F44336;
+  border-color: #F44336;
+}
+
+.status-unknown {
+  background: rgba(158, 158, 158, 0.2);
+  color: #9E9E9E;
+  border-color: #9E9E9E;
+}
+
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.detail-section {
+  border-left: 3px solid var(--portal-green);
+  padding-left: 20px;
+}
+
+.detail-section h3 {
+  font-size: 1rem;
+  color: var(--portal-green);
+  margin: 0 0 12px 0;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(178, 223, 40, 0.1);
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: #999;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 0.9rem;
+  color: #fff;
+  max-width: 60%;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95vw;
+    max-height: 95vh;
+  }
+
+  .modal-body {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 30px 20px;
+  }
+
+  .modal-image img {
+    max-width: 250px;
+  }
+
+  .modal-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail-value {
+    max-width: 100%;
+    text-align: left;
+    margin-top: 5px;
+  }
+}
+
+/* Scrollbar styling */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(178, 223, 40, 0.05);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--portal-green);
+  border-radius: 0;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(178, 223, 40, 0.8);
+}
